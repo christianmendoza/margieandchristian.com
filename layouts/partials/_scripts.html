@@ -1,0 +1,7 @@
+{{ $js_main := resources.Get "js/main.js" | resources.ExecuteAsTemplate "assets/js/main.js" . | resources.Minify }}
+
+{{ if .Site.IsServer }}
+  <script src="{{ $js_main.RelPermalink }}"></script>
+{{ else }}
+  <script>{{ $js_main.Content | safeJS }}</script>
+{{ end }}

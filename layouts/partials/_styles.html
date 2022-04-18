@@ -1,0 +1,13 @@
+{{ $css_main := resources.Get "sass/main.scss" | resources.ExecuteAsTemplate "assets/css/main.scss" . | toCSS (dict "targetPath" "assets/css/main.css" "outputStyle" "compressed") }}
+{{ $css_noscript := resources.Get "sass/noscript.scss" | toCSS (dict "targetPath" "assets/css/noscript.css" "outputStyle" "compressed") }}
+{{ $css_fonts := resources.GetRemote "https://fonts.googleapis.com/css?family=Source+Sans+Pro:200,200italic" | toCSS (dict "targetPath" "assets/css/fonts.css" "outputStyle" "compressed") }}
+
+{{ if .Site.IsServer }}
+  <link rel="stylesheet" href="{{ $css_fonts.RelPermalink }}" />
+  <link rel="stylesheet" href="{{ $css_main.RelPermalink }}" />
+{{ else }}
+  <style>{{ $css_fonts.Content | safeCSS }}</style>
+  <style>{{ $css_main.Content | safeCSS }}</style>
+{{ end }}
+
+<noscript><style>{{ $css_noscript.Content | safeCSS }}</style></noscript>

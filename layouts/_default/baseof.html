@@ -1,0 +1,16 @@
+{{ .Scratch.Set "wedding_date" (time $.Site.Data.content.date).Unix }}
+{{ .Scratch.Set "image" $.Site.Data.content.image }}
+
+<!DOCTYPE HTML>
+<html lang="en">
+  <head>
+    {{ partial "_head" . }}
+  </head>
+  <body class="is-loading">
+    <div id="wrapper">
+      {{ block "main" . }}{{ end }}
+      {{ partial "_icons" . }}
+    </div>
+    {{ partial "_scripts" . }}
+  </body>
+</html>

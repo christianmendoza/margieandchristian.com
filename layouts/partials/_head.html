@@ -1,0 +1,54 @@
+{{ $content := $.Site.Data.content }}
+{{ $title := printf "The Wedding of %s | %s | %s" (.Title) ($content.location) ($content.date | time.Format ":date_long") }}
+{{ $description := printf "%s & %s are getting married in %s on %s." ($content.bride) ($content.groom) ($content.location) ($content.date | time.Format ":date_long") }}
+
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+<meta name="robots" content="noindex, nofollow" />
+
+{{ if .IsHome }}
+  <meta name="author" content="{{ .Site.Title }}" />
+  <meta name="description" content="{{ $description }}" />
+
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:site_name" content="{{ .Site.Title }}" />
+  <meta property="og:title" content="{{ index (split $title " | ") 0 }}" />
+  <meta property="og:description" content="{{ $description }}" />
+  <meta property="og:url" content="{{ .Site.BaseURL }}" />
+  <meta property="og:type" content="website" />
+  <meta property="og:image" content="{{ $.Scratch.Get "image" | absURL }}" />
+{{ end }}
+
+<title>{{ if .IsHome }}{{ $title }}{{ else }}{{ .Title }}{{ end }}</title>
+
+<link href="{{ .Site.BaseURL }}" rel="canonical" />
+
+{{ partial "_styles" . }}
+
+{{ if not .Site.IsServer }}
+	<!-- Global site tag (gtag.js) - Google Analytics -->
+	<script async src="https://www.googletagmanager.com/gtag/js?id={{ .Site.GoogleAnalytics }}"></script>
+	<script>
+	  window.dataLayer = window.dataLayer || [];
+	  function gtag(){dataLayer.push(arguments);}
+	  gtag('js', new Date());
+
+	  gtag('config', '{{ .Site.GoogleAnalytics }}');
+	</script>
+{{ end }}
+
+{{ if .IsHome }}
+  <script type="application/ld+json">
+    {
+      "@context": "http://www.schema.org",
+      "@graph": [
+        {
+          "@type": "WebSite",
+          "name": "{{ .Title }}",
+          "url": "{{ .Site.BaseURL }}"
+        }
+      ]
+    }
+  </script>
+{{ end }}

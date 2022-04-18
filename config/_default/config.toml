@@ -1,0 +1,13 @@
+baseURL = "https://margieandchristian.com/"
+languageCode = "en-us"
+title = "Margie & Christian"
+googleAnalytics = "G-ERQ3CYQ3VE"
+disableKinds = ["section", "taxonomy", "taxonomyTerm", "RSS", "sitemap"]
+copyright = "&copy; Christian Mendoza. Built with [Hugo](//gohugo.io)."
+enableRobotsTXT = true
+verbose = true
+verboseLog = true
+watch = true
+
+[markup]
+  defaultMarkdownHandler = "blackfriday"

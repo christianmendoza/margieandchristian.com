@@ -1,0 +1,15 @@
+date = "2022-09-14T08:00:00.00+08:00"
+location = "Tagaytay, Philippines"
+bride = "Margie"
+groom = "Christian"
+image = "/assets/images/social.jpg"
+
+[[socials]]
+  url = "https://instagram.com/margielim/"
+  icon = "instagram"
+  label = "Instagram"
+
+[[socials]]
+  url = "https://instagram.com/crishchun/"
+  icon = "instagram"
+  label = "Instagram"

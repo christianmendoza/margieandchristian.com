@@ -1,0 +1,28 @@
+{{ define "main" }}
+
+  {{ $content := $.Site.Data.content }}
+
+  <div id="main">
+    <div class="inner">
+      <h1 id="text01">{{ $content.bride }}&nbsp;&nbsp;&amp;&nbsp;&nbsp;{{ $content.groom }}</h1>
+      <div id="timer01" class="timer"><ul></ul></div>
+      <p id="text02">{{ $content.date | time.Format ":date_full" }}<br>{{ $content.location }}</p>
+
+      {{ if $content.socials }}
+        <ul id="icons01" class="icons">
+          {{ range $content.socials }}
+            <li>
+              <a class="n03" href="{{ .url }}">
+                <svg><use xlink:href="#icon-{{ .icon }}"></use></svg>
+                <span class="label">{{ .label }}</span>
+              </a>
+            </li>
+        {{ end }}
+      {{ end }}
+
+      <p id="text08" class="style4">{{ .Site.Copyright | markdownify }}</p>
+
+    </div>
+  </div>
+
+{{ end }}
