@@ -10,4 +10,7 @@ verboseLog = true
 watch = true
 
 [markup]
-  defaultMarkdownHandler = "blackfriday"
+  defaultMarkdownHandler = "goldmark"
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true 
